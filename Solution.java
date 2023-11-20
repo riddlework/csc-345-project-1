@@ -19,6 +19,39 @@ public class Solution {
 		}
 	}
 	
+	public Solution(Solution dad, Solution mom, int spliceValue, boolean whichParent){
+		numItems = dad.numItems;
+		fitness = 0;
+		solution = new Items[numItems];
+		
+		if(whichParent) {
+			int i = 0;
+			while(i < numItems) {
+				if(i <= spliceValue) {
+					solution[i] = dad.solution[i];
+				}
+				else {
+					solution[i] = mom.solution[i];
+				}
+				i++;
+		    }
+		
+		}
+		else {
+			int i = 0;
+			while(i < numItems) {
+				if(i <= spliceValue) {
+					solution[i] = mom.solution[i];
+				}
+				else {
+					solution[i] = dad.solution[i];
+				}
+				i++;
+		    }
+		}
+	}
+	
+	
 	public int getNumSize() {
 		return this.numItems;
 	}
