@@ -51,28 +51,18 @@ public class ComputationTable {
     
     public void solvedPath(List<Item> items, List<Item> solution){
         HashSet<Item> path = new HashSet();
-        constructSolution(items.size() - 1, capacity, path, items);
-        for(Item el : path)
-            solution.add(el);
-    }
-    
-    // Construct the solution from the table
-    private void constructSolution(int idx, int weight, HashSet<Item> path, List<Item> items){
-        //if m[i, j] > m[i-1, j] then:
-        Item curItem = items.get(idx);
-        if (idx  == 0){
-            if(weight > curItem.getweight())
-                path.add(curItem);
-            return;
-        }
-        if (get(weight, idx) > get(weight, idx-1)){
-            constructSolution(idx - 1, weight - curItem.getweight(), path, items);
-            path.add(curItem);
-        }
-        else {
-            constructSolution(idx - 1, weight, path, items);
-        }
         
+        int weight = capacity;
+        for(int i = this.items; i > 0; i--){
+            if(get(capacity, i) > get(capacity, i - 1)){
+                Item cur = items.get(i - 1);
+                solution.add(cur);
+                weight -= cur.getweight();
+            }
+        }
+        if(weight > items.get(0).getweight()){
+            solution.add(items.get(0));
+        }
     }
     
 }

@@ -20,7 +20,8 @@ public class Knapsack {
 			testAlgorithm(
 				initialItems,
 				capacity,
-				RecursiveAlgorithm::solve
+				RecursiveAlgorithm::solve 
+				// some fun reading https://stackoverflow.com/questions/20001427/double-colon-operator-in-java-8
 			);
 			testAlgorithm(
 				initialItems,
@@ -34,16 +35,17 @@ public class Knapsack {
 			);
 			
 		}
+		randomTestCases(5);
 	}
 	
 	
 	
 	private static List<Item> createRandomItems(int numItems){
 		List<Item> initialItems = new ArrayList<>();
-		Random generator = new Random(System.nanoTime());
+		Random generator = new Random(0);
 		for(int i = 0 ; i < numItems; i++){
-			int value = generator.nextInt();
-			int weight = generator.nextInt();
+			int value = generator.nextInt(100);
+			int weight = generator.nextInt(100);
 			String name = "(" + value + ", " + weight + ")";
 			
 			initialItems.add(new Item(name, weight, value));    
@@ -57,27 +59,45 @@ public class Knapsack {
 	}
 	
 	private static int testAlgorithm(List<Item> initialItems, int capacity, Algorithm algo){
-			List<Item> selectedItems = new ArrayList<>();
-			long startTime = System.nanoTime();
-			
-			int sol1 = algo.apply(initialItems, selectedItems, capacity);
-			long endTime = System.nanoTime();
-			long elapsedTime = endTime - startTime;
-			System.out.println("\nTime taken: " + elapsedTime + " milliseconds\n");
-			PrintKnapsack(selectedItems, sol1);
-			return sol1;
+		List<Item> selectedItems = new ArrayList<>();
+		long startTime = System.nanoTime();
+		
+		int sol1 = algo.apply(initialItems, selectedItems, capacity);
+		long endTime = System.nanoTime();
+		long elapsedTime = endTime - startTime;
+		System.out.println("\nTime taken: " + elapsedTime + " milliseconds\n");
+		PrintKnapsack(selectedItems, sol1);
+		return sol1;
 	}
 
 	
 	private static void randomTestCases(int numCases){
-		Random generator = new Random(System.nanoTime());
+		System.out.println("Random Test Cases");
+		System.out.println("----------------------");
+		Random generator = new Random(0);
 		for (int i=0; i < numCases; i++) {
-			List<Item> initialItems = createRandomItems(generator.nextInt());
-			int capacity = generator.nextInt();
+			List<Item> initialItems = createRandomItems(generator.nextInt(100));
+			// Getting a random value and adding the 1st items weight to make sure it's a valid capacity
+			int capacity = generator.nextInt(100) + initialItems.get(0).getweight();
 			System.out.println("Test Case : " + i);
 			System.out.println("Num Items : " + initialItems.size());
 			PrintKnapsack(initialItems, capacity);
-
+			
+			testAlgorithm(
+				initialItems,
+				capacity,
+				RecursiveAlgorithm::solve
+			);
+			testAlgorithm(
+				initialItems,
+				capacity,
+				BottomUp::solve
+			);
+			testAlgorithm(
+				initialItems, 
+				capacity, 
+				MemoizedRecursive::solve
+			);
 			
 	        // Calculate and print the elapsed time
 			// long elapsedTime = TimeUnit.NANOSECONDS.toMillis(endTime - startTime);

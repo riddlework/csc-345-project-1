@@ -10,7 +10,7 @@ public class BottomUp{
     // A modified version of the other BottomUp approach
     // uses a single dimensional array. The challange with this is that it dosen't
     // tra
-    public static  int solveSpaceOptimized(List<Item> items, int capacity){
+    public static  int solveSpaceOptimized(List<Item> items, List<Item> sol, int capacity){
         int[] solution = new int[capacity + 1];
         for(int i = 0; i <= capacity; i++){
             solution[i] = 0;
@@ -46,9 +46,9 @@ public class BottomUp{
     
     private void fillTable(int W, int n) {
         // Construct a table of values to 
-        for(int idx = 0; idx < n; idx++){
-            for(int w = 0; w <= W; w++){
-                Item cur = items.get(idx);
+        for(int idx = 1; idx <= n; idx++){
+            for(int w = 1; w <= W; w++){
+                Item cur = items.get(idx - 1);
                 if(cur.weight > w){
                     table.set(w, idx, table.get(w, idx - 1));
                 }
