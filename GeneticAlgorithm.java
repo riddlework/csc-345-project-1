@@ -2,7 +2,7 @@ import java.util.List;
 
 /*
  * Notes Complexity:
- * Space: N = initial solutions d = items = O((n* 2^5) * d) = O(n)
+ * Space: N = initial solutions d = items = O((700) * d) = O(n)
  * 
  * Time:
  * n = solutions in population
