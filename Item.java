@@ -27,6 +27,7 @@ public class Item {
 	}
 
 	// Override the toString method to provide a string representation of the item
+	@Override
 	public String toString() {
 		// Return a formatted string containing the name, weight, and value of the item
 		return this.name + " (Weight: " + this.weight + ", Value: " + this.value + ")";

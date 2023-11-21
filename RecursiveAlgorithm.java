@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RecursiveAlgorithm {
-
 	// Main function to solve the 0/1 knapsack problem
 	public static int solve(List<Item> initialItems, List<Item> selectedItems, int capacity) {
 		int n = initialItems.size();
@@ -45,21 +44,6 @@ public class RecursiveAlgorithm {
 
 		// Return the maximum value among the two options.
 		return max(withItemValue, withoutItemValue);
-	}
-
-	// Print the details of the selected items and the maximum value
-	private static void PrintKnapsack(List<Item> selectedItems, int maxValue) {
-		if (!selectedItems.isEmpty()) {
-			// Print the maximum value achievable using the knapsack algorithm.
-			System.out.println("Maximum value: " + maxValue);
-			System.out.println("Selected items:");
-		} else {
-			System.out.println("The capacity is less than the weight of any item");
-		}
-		// Print the details of the selected items.
-		for (Item item : selectedItems) {
-			System.out.println(item);
-		}
 	}
 
 	// A utility function to find the maximum of two integers.
