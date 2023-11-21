@@ -8,21 +8,22 @@ import java.util.List;
 public class Knapsack {
 	public static void main(String args[]) {
 		
-		String[] testFiles = {"Game-Data.csv"};
-		int[] capacities = {20};
+		String[] testFiles = {"Game-Data.csv", "Stock-Data.csv", "Courses-Data.csv"};
+		int[] capacities = {20, 100, 10};
 		
 		for (int i=0; i<testFiles.length; i++) {
 		List<Item> initialItems = readCSVFile(testFiles[i]);
+		List<Item> selectedItems = new ArrayList<>();
 		int capacity = capacities[i];
 		long startTime = System.nanoTime();
 		
-		RecursiveAlgorithm.solve(initialItems, capacity);
+		RecursiveAlgorithm.solve(initialItems, selectedItems, capacity);
 		
 		long endTime = System.nanoTime();
 
         // Calculate and print the elapsed time
         long elapsedTime = TimeUnit.NANOSECONDS.toMillis(endTime - startTime);
-        System.out.println("\nTime taken: " + elapsedTime + " milliseconds");
+        System.out.println("\nTime taken: " + elapsedTime + " milliseconds\n");
 	}
 	}
 
