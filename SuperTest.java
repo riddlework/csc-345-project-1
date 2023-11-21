@@ -1,7 +1,16 @@
-import java.util.ArrayList;
+/**
+ * File: SubsetSum.java
+ * Author: Maria Fay Garcia
+ * Purpose: To test superincreasing set generator.
+ */
+
 import java.util.Arrays;
 import java.util.Random;
 
+/**
+ * Test superincreasing set generation. Arrays should be superincreasing
+ * and contain positive distinct longs.
+ */
 public class SuperTest {
     private static Random gen;
 
@@ -21,6 +30,11 @@ public class SuperTest {
         testSuper(testNum++, 40);
     }
 
+    /**
+     * Test superincreasing set generator.
+     * @param num Test number.
+     * @param size Size of superincreasing set to be generated.
+     */
     private static void testSuper(int num, int size) {
         System.out.println("Begin test " + num + "...");
         long[] superArray = Super.genSuper(size);
@@ -32,11 +46,10 @@ public class SuperTest {
 
     /**
      * Check if an array is a superincreasing set.
-     * @param array
+     * @param array The array to be checked.
      * @return A boolean.
      */
     public static boolean isSuper(long[] array) {
-        // For testing purposes
         Arrays.sort(array);
         for (int i = 1; i < array.length-1; i++) {
             long cur = 0;

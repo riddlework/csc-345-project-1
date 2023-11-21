@@ -1,7 +1,14 @@
+/**
+ * File: SubsetSumTest.java
+ * Author: Maria Fay Garcia
+ * Purpose: Test implementation of approximation algorithms for subset sum problem.
+ */
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
+/**
+ * Test implementation of approximation algorithms for subset sum problem.
+ */
 public class SubsetSumTest {
     private static Random gen;
 
@@ -33,7 +40,11 @@ public class SubsetSumTest {
         testFPTAS(testNum++, 40);
     }
 
-
+    /**
+     * Test the r=1/2 approximation algorithm for the subset sum problem.
+     * @param num The test number.
+     * @param size The size of the superincreasing set to be generated.
+     */
     private static void testHalfApprox(int num, int size) {
         System.out.println("Begin test " + num + "...");
         long[] superArray = Super.genSuper(size);
@@ -50,6 +61,11 @@ public class SubsetSumTest {
         System.out.println("Approximation ratio = " + approxRatio);
     }
 
+    /**
+     * Test the fully polynomial time approximation algorithm for the subset sum problem.
+     * @param num The test number.
+     * @param size The size of the superincreasing set to be generated.
+     */
     private static void testFPTAS(int num, int size) {
         System.out.println("Begin test " + num + "...");
         long[] superArray = Super.genSuper(size);
@@ -65,6 +81,11 @@ public class SubsetSumTest {
         System.out.println("Approximation ratio = " + approxRatio);
     }
 
+    /**
+     * Return the sum of the given ArrayList of longs.
+     * @param array The ArrayList to be summed.
+     * @return The integer sum of the ArrayList.
+     */
     private static int sum(ArrayList<Long> array) {
         int sum = 0;
         for (int i = 0; i < array.size(); i++) sum += array.get(i);
