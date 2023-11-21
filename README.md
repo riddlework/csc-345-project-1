@@ -98,11 +98,11 @@ This is the same for every case. (Best, Worst, Average)
 
 ## Subset Sum Problem
 The [subset sum problem](https://en.wikipedia.org/wiki/Subset_sum_problem#Simple_1/2-approximation)
-is a special case of the 0-1 knapsack problem. Given a set of integers A and a
-target sum c, it asks us to find a subset of A that sums to c. This problem
-is necessarily NP-hard, but if we let A be superincreasing it becomes solvable
-in polynomial time using a greedy algorithm. A set is superincreasing, it means
-that for every element x in A, x is greater than the sum of all elements less than x.
+is a special case of the 0-1 knapsack problem. Given a set of integers $A$ and a
+target sum $c$, it asks us to find a subset of $A$ that sums to $c$. This problem
+is necessarily NP-hard, but if we let $A$ be superincreasing it becomes solvable
+in polynomial time using a greedy algorithm. A set is superincreasing, it means that
+$\forall{x} \in A$, $x$ is greater than the sum of all elements less than $x$.
 For example, the set of all powers of two is a superincreasing set.
 
 This project implements two approximation algorithms for the subset sum problem.
@@ -111,18 +111,18 @@ a sum of at most T and at least r times the optimal sum.
 
 The time complexity of the $r=\frac{1}{2}$ approximation depends on the time complexity of
 sorting the set in descending order. Since this is done with insertion sort, the
-best-case runtime of the algorithm is O(N) (when the list is already sorted) and
-the worst-case runtime of the algorithm is O(N^2) (when the algorithm is sorted
+best-case runtime of the algorithm is $O(N)$ (when the list is already sorted) and
+the worst-case runtime of the algorithm is $O(N^2)$ (when the algorithm is sorted
 in reverse order).
 
 The time complexity of the fully polynomial time approximation scheme depends
 on the time complexity of sorting curSums in ascending order. Since this is
-done using insertion sort, its best-case runtime is O(k) and its worst-case
-runtime is O(k^2), where  k is the size of the ArrayList. Since the time
-complexity is O(N), where N is the size of the input set, the best-case
-runtime is O(Nk) and the worst-case runtime is O(Nk^2). The space complexity
-of the r=1/2 approximation is O(N) and the space complexity of the FPTAS is O(Nk),
-where N is the size of the input set and k is the size of curSums.
+done using insertion sort, its best-case runtime is $O(k)$ and its worst-case
+runtime is $O(k^2)$, where  $k$ is the size of the ArrayList. Since the time
+complexity is $O(N)$, where $N$ is the size of the input set, the best-case
+runtime is $O(Nk)$ and the worst-case runtime is $O(Nk^2)$. The space complexity
+of the $r=\frac{1}{2}$ approximation is $O(N)$ and the space complexity of the FPTAS is $O(Nk)$,
+where $N$ is the size of the input set and $k$ is the size of curSums.
 
 There are two parts to the implementation. The code that generates pseudo-random
 superincreasing arrays (Super.java), and the code that implements the approximation
