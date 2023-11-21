@@ -39,15 +39,15 @@ specific input elements
 ### Bottom Up: 
 The bottom up approach fills in the the N*capacity sized 2-d array in a for loop.
 
-Time Complexity: O(N*Capacity)
-Space Complexity: O(N*Capacity)
+    Time Complexity: O(N*Capacity)
+    Space Complexity: O(N*Capacity)
 
 ### Bottom Up (Space Optimized)
 The bottom up approach doesn’t actually need to maintain the whole table; however,
 you aren’t able to get the solution path directly from the output.
 
-Time Complexity: O(N*Capacity)
-Space Complexity: O(Capacity)
+    Time Complexity: O(N*Capacity)
+    Space Complexity: O(Capacity)
 
 ### TopDown/Memoized Recursive:
 The bottom up approach fills in every element in the table,even when the
@@ -59,8 +59,8 @@ to brute force; however, there should always be subproblems in the recursive tre
 In the worst case, the recursive calls would completely fill out the table of
 values and so end up being O(N*d).
 
-	Time Complexity: O(N*d)
-	Space Complexity: O(N*d)
+    Time Complexity: O(N*d)
+    Space Complexity: O(N*d)
 
 ## Genetic Algorithm (GA)
 A genetic algorithm simulates "survival of the fittest" among a population.
