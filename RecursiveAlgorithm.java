@@ -4,12 +4,12 @@ import java.util.List;
 public class RecursiveAlgorithm {
 
 	// Main function to solve the 0/1 knapsack problem
-	public static void solve(List<Item> initialItems, List<Item> selectedItems, int capacity) {
+	public static int solve(List<Item> initialItems, List<Item> selectedItems, int capacity) {
 		int n = initialItems.size();
 		// Get the maximum value using the knapsack algorithm
 		int maxValue = knapSack(capacity, n, initialItems, selectedItems);
 		// Print the selected items and the maximum value
-		PrintKnapsack(selectedItems, maxValue);
+		return maxValue;
 	}
 
 	// A recursive function to solve the 0/1 knapsack problem.

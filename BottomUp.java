@@ -1,7 +1,7 @@
 import java.util.List;
 
-public class BottomUp {
-    public static int solve(List<Item> items, int capacity, List<Item> sol){
+public class BottomUp{
+    public static int solve(List<Item> items, List<Item> sol, int capacity){
         BottomUp solver = new BottomUp(items, capacity);
         solver.fillTable(capacity, items.size());
         solver.table.solvedPath(items, sol);

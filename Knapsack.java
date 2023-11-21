@@ -4,6 +4,7 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
+import java.util.Random;
 
 public class Knapsack {
 	public static void main(String args[]) {
@@ -16,38 +17,73 @@ public class Knapsack {
 			List<Item> selectedItems = new ArrayList<>();
 			int capacity = capacities[i];
 			long startTime = System.nanoTime();
+			testAlgorithm(
+				initialItems,
+				capacity,
+				RecursiveAlgorithm::solve
+			);
+			testAlgorithm(
+				initialItems,
+				capacity,
+				BottomUp::solve
+			);
+			testAlgorithm(
+				initialItems, 
+				capacity, 
+				MemoizedRecursive::solve
+			);
 			
-			RecursiveAlgorithm.solve(initialItems, selectedItems, capacity);
+		}
+	}
+	
+	
+	
+	private static List<Item> createRandomItems(int numItems){
+		List<Item> initialItems = new ArrayList<>();
+		Random generator = new Random(System.nanoTime());
+		for(int i = 0 ; i < numItems; i++){
+			int value = generator.nextInt();
+			int weight = generator.nextInt();
+			String name = "(" + value + ", " + weight + ")";
 			
+			initialItems.add(new Item(name, weight, value));    
+		}
+		return initialItems;
+	}
+	
+	// Hack to get around repeated logic because of static methods
+	private interface Algorithm {
+		int apply(List<Item> initial, List<Item> sol, int cap);
+	}
+	
+	private static int testAlgorithm(List<Item> initialItems, int capacity, Algorithm algo){
+			List<Item> selectedItems = new ArrayList<>();
+			long startTime = System.nanoTime();
+			
+			int sol1 = algo.apply(initialItems, selectedItems, capacity);
 			long endTime = System.nanoTime();
+			long elapsedTime = endTime - startTime;
+			System.out.println("\nTime taken: " + elapsedTime + " milliseconds\n");
+			PrintKnapsack(selectedItems, sol1);
+			return sol1;
+	}
+
+	
+	private static void randomTestCases(int numCases){
+		Random generator = new Random(System.nanoTime());
+		for (int i=0; i < numCases; i++) {
+			List<Item> initialItems = createRandomItems(generator.nextInt());
+			int capacity = generator.nextInt();
+			System.out.println("Test Case : " + i);
+			System.out.println("Num Items : " + initialItems.size());
+			PrintKnapsack(initialItems, capacity);
+
 			
 	        // Calculate and print the elapsed time
 			// long elapsedTime = TimeUnit.NANOSECONDS.toMillis(endTime - startTime);
-			long elapsedTime = endTime - startTime;
-			System.out.println("\nTime taken: " + elapsedTime + " milliseconds\n");
-			
-			selectedItems = new ArrayList<>();
-			startTime = System.nanoTime();
-			
-			int sol2 = MemoizedRecursive.solve(initialItems, capacity, selectedItems);
-			PrintKnapsack(selectedItems, sol2);
-			endTime = System.nanoTime();
 
-	        // Calculate and print the elapsed time
-			elapsedTime = endTime - startTime;
-			System.out.println("\nTime taken: " + elapsedTime + " milliseconds\n");
-			selectedItems = new ArrayList<>();
-			startTime = System.nanoTime();
-			
-			int sol3 = BottomUp.solve(initialItems, capacity, selectedItems);
-			PrintKnapsack(selectedItems, sol3);
-			endTime = System.nanoTime();
-
-	        // Calculate and print the elapsed time
-			elapsedTime = endTime - startTime;
-			System.out.println("\nTime taken: " + elapsedTime + " milliseconds\n");
-			
 		}
+		
 	}
 	
 	private static void PrintKnapsack(List<Item> selectedItems, int maxValue) {

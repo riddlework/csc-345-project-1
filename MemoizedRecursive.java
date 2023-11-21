@@ -4,7 +4,7 @@
 */
 import java.util.List;
 public class MemoizedRecursive  {
-    public static int solve(List<Item> items, int cap, List<Item> solution){
+    public static int solve(List<Item> items, List<Item> solution,  int cap){
         var solver = new MemoizedRecursive(cap, items);
         int sol = solver.knapSack(cap, items.size());
         //System.out.println(solver.table.solvedPath(weights, values));
@@ -28,10 +28,10 @@ public class MemoizedRecursive  {
             return 0;
         }
         // See if the value already exists in our table
-        int existingSol = table.get(remainingWeight, idx);
+        
         // If we do, just return the value (this is the memoization)
-        if (existingSol != -1){
-            return existingSol;
+        if (table.isComputed(remainingWeight, idx)){
+            return table.get(remainingWeight, idx);
         }
         // If not, we compute the solution to the current subproblem 
         // This is the same as the normal recursive solution

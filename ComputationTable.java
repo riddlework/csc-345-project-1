@@ -1,7 +1,7 @@
 import java.util.HashSet;
 import java.util.List;
-// Helper class for DP solutions
-// The DP uses a table of values to record all of the solutions
+// Helper class for dynamic programming solutions
+// The Knapsack dynamic programming solutions use a table of values to record all of the solutions
 public class ComputationTable {
     int[][] storedComputation;
     int defaultValue;
@@ -20,7 +20,7 @@ public class ComputationTable {
             }
         }
     }
-    // Defining this as
+    
     public int get(int weight, int item){
         if (weight < 0 || item < 0){
             return defaultValue;
@@ -35,7 +35,7 @@ public class ComputationTable {
     }
     
     public boolean isComputed(int weight, int item){
-        return storedComputation[weight][item] != -1;
+        return storedComputation[weight][item] != defaultValue;
     }
     
     public String toString(){
