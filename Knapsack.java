@@ -12,19 +12,56 @@ public class Knapsack {
 		int[] capacities = {20, 100, 10};
 		
 		for (int i=0; i<testFiles.length; i++) {
-		List<Item> initialItems = readCSVFile(testFiles[i]);
-		List<Item> selectedItems = new ArrayList<>();
-		int capacity = capacities[i];
-		long startTime = System.nanoTime();
-		
-		RecursiveAlgorithm.solve(initialItems, selectedItems, capacity);
-		
-		long endTime = System.nanoTime();
+			List<Item> initialItems = readCSVFile(testFiles[i]);
+			List<Item> selectedItems = new ArrayList<>();
+			int capacity = capacities[i];
+			long startTime = System.nanoTime();
+			
+			RecursiveAlgorithm.solve(initialItems, selectedItems, capacity);
+			
+			long endTime = System.nanoTime();
+			
+	        // Calculate and print the elapsed time
+			// long elapsedTime = TimeUnit.NANOSECONDS.toMillis(endTime - startTime);
+			long elapsedTime = endTime - startTime;
+			System.out.println("\nTime taken: " + elapsedTime + " milliseconds\n");
+			
+			selectedItems = new ArrayList<>();
+			startTime = System.nanoTime();
+			
+			int sol2 = MemoizedRecursive.solve(initialItems, capacity, selectedItems);
+			PrintKnapsack(selectedItems, sol2);
+			endTime = System.nanoTime();
 
-        // Calculate and print the elapsed time
-        long elapsedTime = TimeUnit.NANOSECONDS.toMillis(endTime - startTime);
-        System.out.println("\nTime taken: " + elapsedTime + " milliseconds\n");
+	        // Calculate and print the elapsed time
+			elapsedTime = endTime - startTime;
+			System.out.println("\nTime taken: " + elapsedTime + " milliseconds\n");
+			selectedItems = new ArrayList<>();
+			startTime = System.nanoTime();
+			
+			int sol3 = BottomUp.solve(initialItems, capacity, selectedItems);
+			PrintKnapsack(selectedItems, sol3);
+			endTime = System.nanoTime();
+
+	        // Calculate and print the elapsed time
+			elapsedTime = endTime - startTime;
+			System.out.println("\nTime taken: " + elapsedTime + " milliseconds\n");
+			
+		}
 	}
+	
+	private static void PrintKnapsack(List<Item> selectedItems, int maxValue) {
+		if (!selectedItems.isEmpty()) {
+			// Print the maximum value achievable using the knapsack algorithm.
+			System.out.println("Maximum value: " + maxValue);
+			System.out.println("Selected items:");
+		} else {
+			System.out.println("The capacity is less than the weight of any item");
+		}
+		// Print the details of the selected items.
+		for (Item item : selectedItems) {
+			System.out.println(item);
+		}
 	}
 
 	private static List<Item> readCSVFile(String csvFile) {

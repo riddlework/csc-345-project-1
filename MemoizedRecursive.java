@@ -36,7 +36,7 @@ public class MemoizedRecursive  {
         // If not, we compute the solution to the current subproblem 
         // This is the same as the normal recursive solution
         Item cur = items.get(idx - 1);
-        if (W < cur.weight){
+        if (remainingWeight < cur.weight){
             int previous = knapSack(remainingWeight, idx - 1);
             table.set(remainingWeight, idx, previous);
             return previous;
@@ -44,7 +44,7 @@ public class MemoizedRecursive  {
         int without = knapSack(remainingWeight, idx - 1);
         int with = cur.value + knapSack(remainingWeight - cur.weight, idx - 1);
         int max = (without > with)? without : with;
-        table.set(W, idx, max);
+        table.set(remainingWeight, idx, max);
         return max;
     }
 
