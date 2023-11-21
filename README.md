@@ -109,7 +109,7 @@ This project implements two approximation algorithms for the subset sum problem.
 An approximation algorithm of the subset sum problem aims to find a subset with
 a sum of at most T and at least r times the optimal sum.
 
-The time complexity of the $$r=\frac{1}{2}$$ approximation depends on the time complexity of
+The time complexity of the $r=\frac{1}{2}$ approximation depends on the time complexity of
 sorting the set in descending order. Since this is done with insertion sort, the
 best-case runtime of the algorithm is O(N) (when the list is already sorted) and
 the worst-case runtime of the algorithm is O(N^2) (when the algorithm is sorted
