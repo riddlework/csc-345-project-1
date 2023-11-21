@@ -7,7 +7,6 @@ Maria Fay Garcia, Mikos Bazerkanian, Rythm Sanghvi, Elliot Hagyard
 
 The [knapsack problem](https://en.wikipedia.org/wiki/Knapsack_problem) is an NP-complete problem of combinatorial optimization:
 
-
 > “Given a set of items, each with a weight and a value, determine
 which items to include in the collection so that the total weight
 is less than or equal to a given limit and the total value is as
@@ -17,21 +16,45 @@ The 0-1 knapsack problem is the most common solution approach and allows
 for at most one copy of each distinct item. This project implements a series
 of algorithms that approximate solutions to this problem.
 
+## Genetic Algorithm (GA)
+A genetic algorithm simulates "survival of the fittest" among a population.
+In the case of the knapsack problem, the population is a set of possible solutions.
+The solutions will initially be randomly generated for the first generation. A
+random population might look like this: [[1,0,1,0],[0,0,0,1], [0,1,1,0]]; where
+a 1 represents the item’s inclusion in the solution and a 0 the exclusion.
+
+The population is run through a fitness method whereupon each solution is
+given a fitness value. The greater the value the better the solution. If
+the solution’s summative weight is greater than the max threshold,
+then the fitness value resets to 0.
+
+Next, the solution with the greatest value is stored and automatically saved
+to the next generation. This is called elitism. The next step in the implementation
+is to place the population in a tournament method that randomly selects two
+solutions and the one with the greater value is selected to be a parent for
+the next generation.
+
+Then two parents are randomly selected and simulate gene recombination
+in gametes where different portions of the parents’ (solutions) genes
+(items) are concatenated into a new solution and added to the next generation.
+
+The new solution has a method called mutation that may randomly change if an
+item is expressed or not–simulating mutation in real life. This process is
+repeated until the next generation is the same size as the previous one.
+Then the entirety of the program runs again.
+
+Space Complexity: (700 *d) - d is the number of items, 700 is the number of
+solutions in the population. This is the same for every case. (Best, Worst, Average)
+
+Time Complexity: O(n*d) - n is the number of solutions in a given
+generation (20<= n <= 700) d is the number of items in a solution.
+This is the same for every case. (Best, Worst, Average)
 
 
-Genetic Algorithm (GA)
-	A genetic algorithm simulates “survival of the fittest '' among a population. In the case of the knapsack problem, the population is a set of possible solutions. The solutions will initially be randomly generated for the first generation. A random population might look like this: [[1,0,1,0],[0,0,0,1], [0,1,1,0]]; where a 1 represents the item’s inclusion in the solution and a 0 the exclusion. The population is run through a fitness method where- upon each solution is given a fitness value. The greater the value the better the solution. If the solution’s summative weight is greater than the max threshold, then the fitness value resets to 0. Next, the solution with the greatest value is stored and automatically saved to the next generation. This is called elitism. The next step in the implementation is to place the population in a tournament method that randomly selects two solutions and the one with the greater value is selected to be a parent for the next generation. Then two parents are randomly selected and simulate gene recombination in gametes where different portions of the parents’ (solutions) genes (items) are concatenated into a new solution and added to the next generation. The new solution has a method called mutation that may randomly change if an item is expressed or not–simulating mutation in real life. This process is repeated until the next generation is the same size as the previous one. Then the entirety of the program runs again.
-
-Space Complexity: (700 *d) - d is the number of items, 700 is the number of solutions in the population. This is the same for every case. (Best, Worst, Average)
-
-Time Complexity: O(n*d) - n is the number of solutions in a given generation (20<= n <= 700) d is the number of items in a solution. This is the same for every case. (Best, Worst, Average)
 
 
-
-
-Subset Sum Problem (https://en.wikipedia.org/wiki/Subset_sum_problem#Simple_1/2-approximation) for hyperlink
-
-The subset sum problem is a special case of the 0-1 knapsack problem. Given a set of integers A and a target sum c, it asks us to find a subset of A that sums to c. This problem is necessarily NP-hard, but if we let A be superincreasing it becomes solvable in polynomial time using a greedy algorithm. A set is superincreasing, it means that for every element x in A, x is greater than the sum of all elements less than x. For example, the set of all powers of two is a superincreasing set.
+## Subset Sum Problem
+The [subset sum problem](https://en.wikipedia.org/wiki/Subset_sum_problem#Simple_1/2-approximation) is a special case of the 0-1 knapsack problem. Given a set of integers A and a target sum c, it asks us to find a subset of A that sums to c. This problem is necessarily NP-hard, but if we let A be superincreasing it becomes solvable in polynomial time using a greedy algorithm. A set is superincreasing, it means that for every element x in A, x is greater than the sum of all elements less than x. For example, the set of all powers of two is a superincreasing set.
 
 This project implements two approximation algorithms for the subset sum problem. An approximation algorithm of the subset sum problem aims to find a subset with a sum of at most T and at least r times the optimal sum.
 
