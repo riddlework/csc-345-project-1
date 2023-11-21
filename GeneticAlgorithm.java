@@ -1,8 +1,28 @@
 import java.util.List;
+
+/*
+ * Notes Complexity:
+ * Space: N = initial solutions d = items = O((n* 2^5) * d) = O(n)
+ * 
+ * Time:
+ * n = solutions in population
+ * initialPop = O(n*d)
+ * testFitness = O(n*d)
+ * mutate pop = O(n*d)
+ * testFitness = O(n*d)
+ * selection = O(5* (2n) * d)
+ * testFitness = O(5 * n*d)
+ * findBest = O(n)
+ * 
+ * Total runtime = O(n*d)
+ */
+
+
+
 //The GeneticAlgorithm class is responsible for solving a problem using a genetic algorithm.
 public class GeneticAlgorithm {
 	// The solve method takes a list of items and uses a genetic algorithm to find a solution.
-	public static void solve(List<Item> itemList, int threshold) {
+	public static Solution solve(List<Item> itemList, int threshold) {
 		// Create a population with 20 individuals, each having 8 genes.
 		Population p = new Population(20, threshold);
 		
@@ -26,10 +46,8 @@ public class GeneticAlgorithm {
 		}
 		
 		// Evaluate and display the fitness of the population after selection.
-		System.out.println(p.findBest());
+		return p.findBest();
 		
-		// Display the best solution in the current generation.
-		System.out.print("done");
 		
 	}
 	
