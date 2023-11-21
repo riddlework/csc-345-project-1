@@ -5,15 +5,24 @@
  */
 import java.util.*;
 
-
+/**
+ * Given a superincreasing set of positive integers and a target sum,
+ * the subset sum problem asks us to find a subset of the set which sums
+ * to the target sum.
+ *
+ * We approximate solutions to the subset sum problem here using two greedy
+ * algorithms. Our approximations find a subset with a sum of at least r
+ * times the target sum.
+ */
 public class SubsetSum {
-    // Given a superincreasing set of positive integers A and a positive integer c, find a subset of A
-    // which sums to c, using a greedy algorithm.
-
-    // r is the approximation
-
-    // r=1/2 approximation
-    public static ArrayList<Integer> halfApprox(int[] set, int target) {
+    /**
+     * This approximation guarantees an r value of 1/2.
+     * @param set The superincreasing set.
+     * @param targetSum The integer target sum to be found.
+     * @return A subset of the input set whose elements sum to at least 1/2
+     *      times the target sum.
+     */
+    public static ArrayList<Integer> halfApprox(int[] set, int targetSum) {
         ArrayList<Integer> subset = new ArrayList<>();
 
         // sort the inputs in descending order
@@ -25,7 +34,7 @@ public class SubsetSum {
         // repeatedly put the next-largest input into the subset, as long as it fits there.
         for (int i = 0; i < set.length; i++) {
             int cur = set[i];
-            if (curSum + cur <= target) {
+            if (curSum + cur <= targetSum) {
                 subset.add(cur);
                 curSum += cur;
             }
@@ -41,7 +50,7 @@ public class SubsetSum {
      * Sort an ArrayList of Integers in ascending order using insertion sort.
      * @param a The ArrayList to be sorted.
      */
-    public static void aSort(ArrayList<Integer> a) {
+    public static void aSort(ArrayList<Integer> array) {
         for (int i = 0; i < a.size(); i++) {
             int j = i;
             while (j-1 >= 0) {
@@ -54,7 +63,7 @@ public class SubsetSum {
     }
 
     /**
-     * Sort an array in descending order using insertion sort.
+     * Sort a primitive array in descending order using insertion sort.
      * @param a The array to be sorted
      */
     public static void dSort(int[] a) {
@@ -72,7 +81,13 @@ public class SubsetSum {
 
     // -------------------------------------------------- //
 
-    // fully polynomial time approximation
+
+    /**
+     * A fully polynomial time approximation to the subset sum problem.
+     * @param set The superincreasing set.
+     * @param targetSum The target sum.
+     * @return The integer sum of the solution subset.
+     */
     public static int FPTAS(int[] set, int targetSum) {
         if (targetSum == 0) return 0;
 
@@ -104,7 +119,7 @@ public class SubsetSum {
             for (int j = 0; j < curSums.size(); j++) {
                 Integer z = curSums.get(j);
 
-                // Prune possibilities by deleting numbers that are close together
+                // Prune possibilities by not considering numbers that are close together
                 if ((min + targetSum)/set.length < z && z <= targetSum) {
                     min = z;
                     list.add(z);
@@ -118,6 +133,12 @@ public class SubsetSum {
 
 
     // FPTAS auxiliary methods:
+
+    /**
+     * Find the minimum of an ArrayList of integers.
+     * @param set The ArrayList whose min we want to find.
+     * @return The minimum of the ArrayList.
+     */
     public static int min(ArrayList<Integer> set) {
         if (set.isEmpty()) throw new IllegalArgumentException("Set must be non-empty.");
         int min = set.get(0);
@@ -128,6 +149,11 @@ public class SubsetSum {
         return min;
     }
 
+    /**
+     * Find the maximum of an ArrayList of integers.
+     * @param set The ArrayList whose max we want to find.
+     * @return The maximum of the ArrayList.
+     */
     public static int max(ArrayList<Integer> set) {
         if (set.isEmpty()) throw new IllegalArgumentException("Set must be non-empty.");
         int max = set.get(0);
@@ -153,23 +179,18 @@ public class SubsetSum {
         }
     }
 
+    /**
+     * Swap two elements of the given ArrayList.
+     * @param array The ArrayList whose elements we want to swap.
+     * @param i The first integer index.
+     * @param j The second integer index.
+     */
     private static void swap(ArrayList<Integer> array, int i, int j) {
         if (i != j) {
             Integer temp = array.get(i);
             array.set(i, array.get(j));
             array.set(j, temp);
         }
-    }
-
-    public static void main(String[] args) {
-        int[] superArray = {2, 4, 8, 16, 32, 64, 128, 256, 512};
-//        System.out.println(Arrays.toString(superArray));
-//        System.out.println("length: " + superArray.length);
-//        int[] superArray = Super.genSuper(10);
-        int targetSum = Super.chooseTargetSum(superArray);
-        System.out.println(targetSum);
-//        ArrayList<Integer> result = PTAS(superArray, 24);
-        System.out.println(FPTAS(superArray, 0));
     }
 }
 
