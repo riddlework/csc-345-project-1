@@ -28,8 +28,8 @@ understanding of the knapsack problem but may encounter efficiency challenges
 for larger datasets, prompting consideration of more optimized techniques such
 as dynamic programming.
 
-Time Complexity: O(2N) (Best and Worst Case)
-Space Complexity: O(N) (Call Stack)
+    Time Complexity: O(2N) (Best and Worst Case)
+    Space Complexity: O(N) (Call Stack)
 
 ## Dynamic Programming
 Both approaches to dynamic programming for the Knapsack problem use an
