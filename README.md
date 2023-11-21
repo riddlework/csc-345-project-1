@@ -115,7 +115,7 @@ best-case runtime of the algorithm is $O(N)$ (when the list is already sorted) a
 the worst-case runtime of the algorithm is $O(N^2)$ (when the algorithm is sorted
 in reverse order).
 
-The time complexity of the fully polynomial time approximation scheme depends
+The time complexity of the fully polynomial time approximation scheme (FPTAS) depends
 on the time complexity of sorting curSums in ascending order. Since this is
 done using insertion sort, its best-case runtime is $O(k)$ and its worst-case
 runtime is $O(k^2)$, where  $k$ is the size of the ArrayList. Since the time
