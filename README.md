@@ -16,6 +16,16 @@ The 0-1 knapsack problem is the most common solution approach and allows
 for at most one copy of each distinct item. This project implements a series
 of algorithms that approximate solutions to this problem.
 
+## Testing
+
+### Subset Sum
+There are two parts to the implementation. The code that generates pseudo-random
+superincreasing arrays (Super.java), and the code that implements the approximation
+algorithms (SubsetSum.java). To test the generation of superincreasing arrays, run
+the test code in SuperTest.java. To test the approximation algorithms, run the
+test code in SubsetSumTest.java. 
+
+
 ## Recursive Algorithm
 The Recursive Knapsack Algorithm is designed to solve the 0-1 knapsack problem,
 a classic optimization challenge where the goal is to select a subset of items from
@@ -125,15 +135,6 @@ where $N$ is the size of the input set and $k$ is the size of curSums.
 
 
 
-## Testing
-
-
-### Subset Sum
-There are two parts to the implementation. The code that generates pseudo-random
-superincreasing arrays (Super.java), and the code that implements the approximation
-algorithms (SubsetSum.java). To test the generation of superincreasing arrays, run
-the test code in SuperTest.java. To test the approximation algorithms, run the
-test code in SubsetSumTest.java. 
 
 
 
