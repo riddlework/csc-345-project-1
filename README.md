@@ -123,12 +123,17 @@ runtime is $O(Nk)$ and the worst-case runtime is $O(Nk^2)$. The space complexity
 of the $r=\frac{1}{2}$ approximation is $O(N)$ and the space complexity of the FPTAS is $O(Nk)$,
 where $N$ is the size of the input set and $k$ is the size of curSums.
 
+
+
+## Testing
+
+
+### Subset Sum
 There are two parts to the implementation. The code that generates pseudo-random
 superincreasing arrays (Super.java), and the code that implements the approximation
 algorithms (SubsetSum.java). To test the generation of superincreasing arrays, run
 the test code in SuperTest.java. To test the approximation algorithms, run the
 test code in SubsetSumTest.java. 
-
 
 
 
