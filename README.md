@@ -47,19 +47,14 @@ array to store the output of including a value or not including the value for
 specific input elements 
 
 ### Bottom Up: 
+
 The bottom up approach fills in the the N*capacity sized 2-d array in a for loop.
 
     Time Complexity: O(N*Capacity)
     Space Complexity: O(N*Capacity)
 
-### Bottom Up (Space Optimized)
-The bottom up approach doesn’t actually need to maintain the whole table; however,
-you aren’t able to get the solution path directly from the output.
-
-    Time Complexity: O(N*Capacity)
-    Space Complexity: O(Capacity)
-
 ### TopDown/Memoized Recursive:
+
 The bottom up approach fills in every element in the table,even when the
  weights aren’t possible given the combinations of items and capacity.
 The memoized recursive algorithm fills in the necessary elements, but has
