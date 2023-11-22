@@ -130,7 +130,7 @@ where $N$ is the size of the input set and $k$ is the size of curSums.
 
 ## Bibliography
 
- Caprara, Alberto; Kellerer, Hans; Pferschy, Ulrich (2000-02-01).
+ - Caprara, Alberto; Kellerer, Hans; Pferschy, Ulrich (2000-02-01).
  "The Multiple Subset Sum Problem". SIAM Journal on Optimization. 11 (2): 308–319.
  doi:10.1137/S1052623498348481. ISSN 1052-6234.
 
