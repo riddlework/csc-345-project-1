@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
@@ -25,6 +27,9 @@ public class Knapsack {
 
 	// Main method
 	public static void main(String args[]) {
+		
+		deleteResultsFile();
+		
 		// Test cases with different datasets and capacities
 		String[] testFiles = { "Game-Data.csv", "Stock-Data.csv", "Courses-Data.csv" };
 		int[] capacities = { 20, 100, 10 };
@@ -36,12 +41,12 @@ public class Knapsack {
 			// Set the knapsack capacity for the current test case
 			int capacity = capacities[i];
 			// Test different algorithms on the current dataset
-			testAlgorithm(initialItems, capacity, RecursiveAlgorithm::solve
+			testAlgorithm(initialItems, capacity, RecursiveAlgorithm::solve, "Recursive Algorithm"
 			// some fun reading
 			// https://stackoverflow.com/questions/20001427/double-colon-operator-in-java-8
 			);
-			testAlgorithm(initialItems, capacity, BottomUp::solve);
-			testAlgorithm(initialItems, capacity, MemoizedRecursive::solve);
+			testAlgorithm(initialItems, capacity, BottomUp::solve, "Bottom Up");
+			testAlgorithm(initialItems, capacity, MemoizedRecursive::solve, "Memoized Recursive");
 		}
 		// Generate and test random test cases
 		randomTestCases(5);
@@ -51,18 +56,22 @@ public class Knapsack {
 	// Interface to represent an algorithm
 	private interface Algorithm {
 		int apply(List<Item> initial, List<Item> sol, int cap);
+
 	}
 
 	// Method to test a specific algorithm on a dataset
-	private static int testAlgorithm(List<Item> initialItems, int capacity, Algorithm algo) {
+	private static int testAlgorithm(List<Item> initialItems, int capacity, Algorithm algo, String algoName) {
 		List<Item> selectedItems = new ArrayList<>();
 		long startTime = System.nanoTime();
 		int sol1 = algo.apply(initialItems, selectedItems, capacity);
 		long endTime = System.nanoTime();
 		long elapsedTime = endTime - startTime;
+		
 		// Print the selected items and the maximum value
 		PrintKnapsack(selectedItems, sol1);
 		System.out.println("\nTime taken: " + elapsedTime + " nanoseconds\n");
+		writeResultsToCSV(algoName, elapsedTime, initialItems.size());
+		
 		return sol1;
 	}
 
@@ -81,9 +90,9 @@ public class Knapsack {
 			System.out.println("Num Items : " + initialItems.size());
 			// PrintKnapsack(initialItems, capacity);
 			// Test different algorithms on the random test case
-			testAlgorithm(initialItems, capacity, RecursiveAlgorithm::solve);
-			testAlgorithm(initialItems, capacity, BottomUp::solve);
-			testAlgorithm(initialItems, capacity, MemoizedRecursive::solve);
+			testAlgorithm(initialItems, capacity, RecursiveAlgorithm::solve, "Recursive Algorithm");
+			testAlgorithm(initialItems, capacity, BottomUp::solve, "Bottom Up");
+			testAlgorithm(initialItems, capacity, MemoizedRecursive::solve, "Memoized Recursive");
 		}
 	}
 
@@ -101,6 +110,8 @@ public class Knapsack {
 		return initialItems;
 	}
 
+	
+	
 	// Print the details of the selected items and the maximum value
 	private static void PrintKnapsack(List<Item> selectedItems, int maxValue) {
 		if (!selectedItems.isEmpty()) {
@@ -142,4 +153,38 @@ public class Knapsack {
 		}
 		return initialItems;
 	}
+	
+	
+	private static void writeResultsToCSV(String algorithmName, long elapsedTime, int numItems) {
+	    String csvFileName = "results.csv";
+
+	    try {
+	        File file = new File(csvFileName);
+
+	        // Check if the file exists; if not, write the header
+	        if (!file.exists() || file.length() == 0) {
+	            try (FileWriter writer = new FileWriter(csvFileName, true)) {
+	                writer.append("Algorithm,TimeElapsed,NumItems\n");
+	            }
+	        }
+
+	        // Write algorithm name, time elapsed, and number of items to the CSV file
+	        try (FileWriter writer = new FileWriter(csvFileName, true)) {
+	            writer.append(algorithmName).append(",").append(Long.toString(elapsedTime)).append(",").append(Integer.toString(numItems)).append("\n");
+	        }
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	}
+	
+	private static void deleteResultsFile() {
+        File file = new File("results.csv");
+        if (file.exists()) {
+            if (file.delete()) {
+                System.out.println("Existing results file deleted.");
+            } else {
+                System.out.println("Unable to delete the existing results file.");
+            }
+        }
+    }
 }
