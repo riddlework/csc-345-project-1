@@ -5,7 +5,7 @@ public class BottomUp{
         BottomUp solver = new BottomUp(items, capacity);
         solver.fillTable(capacity, items.size());
         solver.table.solvedPath(items, sol);
-        return solver.table.get(capacity, items.size() -1);
+        return solver.table.get(capacity, items.size());
     }
     // A modified version of the other BottomUp approach
     // uses a single dimensional array. The challange with this is that it dosen't
