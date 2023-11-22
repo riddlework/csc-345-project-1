@@ -1,3 +1,16 @@
+/*
+ * RecursiveAlgorithm.java
+ * 
+ * This class implements a solution for the 0/1 knapsack problem using a recursive approach.
+ * The problem involves selecting a subset of items with maximum total value, considering a
+ * knapsack's capacity constraint. The main function 'solve' takes a list of initial items,
+ * a list to store selected items, and the knapsack capacity as input, returning the maximum
+ * value achievable. The recursive function 'knapSack' explores all possible combinations
+ * of including or excluding items to find the optimal solution. The utility function 'max'
+ * returns the maximum of two integers.
+ * 
+ */
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +28,7 @@ public class RecursiveAlgorithm {
 	static int knapSack(int capacity, int n, List<Item> initialItems, List<Item> selectedItems) {
 		// Base case: if there are no items left or the knapsack's capacity is 0,
 		// the value of the knapsack is 0.
-		if (n == 0 || capacity == 0)
+		if (n == 0 || capacity <= 0)
 			return 0;
 
 		// If the weight of the nth item is more than the knapsack's capacity (W),
@@ -50,5 +63,5 @@ public class RecursiveAlgorithm {
 	static int max(int a, int b) {
 		return (a > b) ? a : b;
 	}
-	
+
 }
