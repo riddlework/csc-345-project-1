@@ -32,7 +32,7 @@ public class Knapsack {
 		
 		// Test cases with different datasets and capacities
 		String[] testFiles = { "Game-Data.csv", "Stock-Data.csv", "Courses-Data.csv" };
-		int[] capacities = { 20, 100, 10 };
+		int[] capacities = { 10, 100, 10 };
 
 		// Loop through test cases
 		for (int i = 0; i < testFiles.length; i++) {
@@ -47,6 +47,8 @@ public class Knapsack {
 			);
 			testAlgorithm(initialItems, capacity, BottomUp::solve, "Bottom Up");
 			testAlgorithm(initialItems, capacity, MemoizedRecursive::solve, "Memoized Recursive");
+			testAlgorithm(initialItems, capacity, GeneticAlgorithm::solve, "Genetic Algorithm");
+			
 		}
 		// Generate and test random test cases
 		randomTestCases(5);
@@ -82,17 +84,20 @@ public class Knapsack {
 		Random generator = new Random(0);
 		for (int i = 0; i < numCases; i++) {
 			// Create random items and capacity for the test case
-			List<Item> initialItems = createRandomItems(generator.nextInt(100));
+			List<Item> initialItems = createRandomItems(generator.nextInt(50));
 			// Getting a random value and adding the 1st items weight to make sure it's a
 			// valid capacity
 			int capacity = generator.nextInt(100) + initialItems.get(0).getweight();
 			System.out.println("Test Case : " + i);
 			System.out.println("Num Items : " + initialItems.size());
-			// PrintKnapsack(initialItems, capacity);
+			 PrintKnapsack(initialItems, capacity);
+			 System.out.println("\n");
 			// Test different algorithms on the random test case
 			testAlgorithm(initialItems, capacity, RecursiveAlgorithm::solve, "Recursive Algorithm");
 			testAlgorithm(initialItems, capacity, BottomUp::solve, "Bottom Up");
 			testAlgorithm(initialItems, capacity, MemoizedRecursive::solve, "Memoized Recursive");
+			if(initialItems.size()<=30)
+			testAlgorithm(initialItems, capacity, GeneticAlgorithm::solve, "Genetic Algorithm");
 		}
 	}
 
@@ -114,6 +119,7 @@ public class Knapsack {
 	
 	// Print the details of the selected items and the maximum value
 	private static void PrintKnapsack(List<Item> selectedItems, int maxValue) {
+		
 		if (!selectedItems.isEmpty()) {
 			// Print the maximum value achievable using the knapsack algorithm.
 			System.out.println("Maximum value: " + maxValue);

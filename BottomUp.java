@@ -1,16 +1,28 @@
 import java.util.List;
 
 public class BottomUp{
-    // static solve method that is an interface with the test code
     public static int solve(List<Item> items, List<Item> sol, int capacity){
         BottomUp solver = new BottomUp(items, capacity);
-        // Filling the table creates 
         solver.fillTable(capacity, items.size());
-        // Fill in the path
         solver.table.solvedPath(items, sol);
-        // Get the last item to represent the heighest value
         return solver.table.get(capacity, items.size());
     }
+    // A modified version of the other BottomUp approach
+    // uses a single dimensional array. The challange with this is that it dosen't
+    // tra
+    public static  int solveSpaceOptimized(List<Item> items, List<Item> sol, int capacity){
+        int[] solution = new int[capacity + 1];
+        for(int i = 0; i <= capacity; i++){
+            solution[i] = 0;
+        }
+        for(int i = 0; i < items.size(); i++){
+            Item cur = items.get(i);
+            for(int j = capacity; j >= cur.weight; j--)
+                solution[j] = max(solution[j], cur.value + solution[j - cur.weight]);
+        }
+        return solution[capacity];
+    }
+    
 
     // TODO use an Item array
     int capacity = 0;
