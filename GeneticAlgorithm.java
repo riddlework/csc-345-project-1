@@ -47,7 +47,6 @@ public class GeneticAlgorithm {
 		
 		// Evaluate and display the fitness of the population after selection.
 		Solution best = p.findBest();
-		System.out.println("This is the best " + best);
 		for(int i = 0; i < itemList.size(); i++) {
 			if(best.solution[i].isExpressed()) {
 				selectedItems.add(itemList.get(i));
