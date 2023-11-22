@@ -25,7 +25,7 @@ public class GeneticAlgorithm {
 	public static int solve(List<Item> itemList,  List<Item> selectedItems, int threshold) {
 		// Create a population with 20 individuals, each having 8 genes.
 		Population p = new Population(1000, threshold);
-		System.out.println("Threshold" + p.weightThreshold);
+	
 		// Initialize the population with random solutions based on the given item list.
 		p.initialPop(itemList);
 		
