@@ -96,7 +96,7 @@ public class Knapsack {
 			testAlgorithm(initialItems, capacity, RecursiveAlgorithm::solve, "Recursive Algorithm");
 			testAlgorithm(initialItems, capacity, BottomUp::solve, "Bottom Up");
 			testAlgorithm(initialItems, capacity, MemoizedRecursive::solve, "Memoized Recursive");
-			if(initialItems.size()<=30)
+			if(initialItems.size()<=20)
 			testAlgorithm(initialItems, capacity, GeneticAlgorithm::solve, "Genetic Algorithm");
 		}
 	}
