@@ -17,7 +17,7 @@ for at most one copy of each distinct item. This project implements a series
 of algorithms that approximate solutions to this problem.
 
 ## Recursive Algorithm
-The Recursive Knapsack Algorithm is designed to solve the 0/1 knapsack problem,
+The Recursive Knapsack Algorithm is designed to solve the 0-1 knapsack problem,
 a classic optimization challenge where the goal is to select a subset of items from
 a given list, each with a weight and value, in order to maximize the total value
 while adhering to a specified capacity constraint. Employing a recursive strategy,
@@ -89,11 +89,11 @@ item is expressed or not–simulating mutation in real life. This process is
 repeated until the next generation is the same size as the previous one.
 Then the entirety of the program runs again.
 
-Space Complexity: (700 *d) - d is the number of items, 700 is the number of
+Space Complexity: $(700*d)$ where d is the number of items and 700 is the number of
 solutions in the population. This is the same for every case. (Best, Worst, Average)
 
-Time Complexity: O(n*d) - n is the number of solutions in a given
-generation (20<= n <= 700) d is the number of items in a solution.
+Time Complexity: $O(Nd) where $N$ is the number of solutions in a given
+generation, $20 \leq N \leq 700$, and $d$ is the number of items in a solution.
 This is the same for every case. (Best, Worst, Average)
 
 ## Subset Sum Problem
