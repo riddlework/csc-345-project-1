@@ -54,7 +54,7 @@ public class ComputationTable {
         
         int weight = capacity;
         for(int i = this.items; i > 0; i--){
-            if(get(capacity, i) > get(capacity, i - 1)){
+            if(get(weight, i) > get(weight, i - 1)){
                 Item cur = items.get(i - 1);
                 solution.add(cur);
                 weight -= cur.getweight();
