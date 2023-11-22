@@ -3,6 +3,9 @@
 ## Authors
 Maria Fay Garcia, Mikos Bazerkanian, Rythm Sanghvi, Elliot Hagyard
 
+## Presentation
+Click this [link](https://youtu.be/SdyzEfa7AIk) to view our presentation.
+
 ## Overview of the Knapsack Problem
 
 The [knapsack problem](https://en.wikipedia.org/wiki/Knapsack_problem) is an NP-complete problem of combinatorial optimization:
