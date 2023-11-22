@@ -89,7 +89,7 @@ item is expressed or not–simulating mutation in real life. This process is
 repeated until the next generation is the same size as the previous one.
 Then the entirety of the program runs again.
 
-Space Complexity: $(700*d)$ where d is the number of items and 700 is the number of
+Space Complexity: $(700d)$ where $d$ is the number of items and 700 is the number of
 solutions in the population. This is the same for every case. (Best, Worst, Average)
 
 Time Complexity: $O(Nd)$ where $N$ is the number of solutions in a given
