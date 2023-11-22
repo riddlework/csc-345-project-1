@@ -22,12 +22,16 @@ of algorithms that approximate solutions to this problem.
 ## Testing
 
 ### Subset Sum
+
 There are two parts to the implementation. The code that generates pseudo-random
 superincreasing arrays (Super.java), and the code that implements the approximation
 algorithms (SubsetSum.java). To test the generation of superincreasing arrays, run
 the test code in SuperTest.java. To test the approximation algorithms, run the
-test code in SubsetSumTest.java. 
+test code in SubsetSumTest.java.
 
+### Knapsack Problem
+
+The test code is in Knapsack.java. To run tests for the various implementations (Recursive, DP, Genetic), run `javac *.java` to compile all the files then run `java Knapsack.java`.
 
 ## Recursive Algorithm
 The Recursive Knapsack Algorithm is designed to solve the 0-1 knapsack problem,
