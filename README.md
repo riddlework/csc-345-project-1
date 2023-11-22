@@ -21,6 +21,14 @@ of algorithms that approximate solutions to this problem.
 
 ## Testing
 
+### Knapsack Problem
+
+The test code is in Knapsack.java. To run tests for the various implementations
+(Recursive, DP, Genetic), run `javac *.java` to compile all the files, then run
+`java Knapsack.java`
+To run the graphing code, install matplotlib and pandas (`pip install matplotlib pandas`).
+Then, after running Knapsack.java, run `python graph.py`.
+
 ### Subset Sum
 
 There are two parts to the implementation. The code that generates pseudo-random
@@ -28,11 +36,6 @@ superincreasing arrays (Super.java), and the code that implements the approximat
 algorithms (SubsetSum.java). To test the generation of superincreasing arrays, run
 the test code in SuperTest.java. To test the approximation algorithms, run the
 test code in SubsetSumTest.java.
-
-### Knapsack Problem
-
-The test code is in Knapsack.java. To run tests for the various implementations (Recursive, DP, Genetic), run `javac *.java` to compile all the files, then run `java Knapsack.java`
-To run the graphing code, install matplotlib and pandas (`pip install matplotlib pandas`). Then, after running Knapsack.java, run `python graph.py`.
 
 ## Recursive Algorithm
 The Recursive Knapsack Algorithm is designed to solve the 0-1 knapsack problem,
