@@ -37,7 +37,7 @@ public class ComputationTable {
     public boolean isComputed(int weight, int item){
         return storedComputation[weight][item] != defaultValue;
     }
-    
+    // Convert the array into 2d grid of ints
     public String toString(){
         String repr = "";
         for(int i = 0; i < storedComputation.length; i++){
@@ -49,11 +49,14 @@ public class ComputationTable {
         return repr;
     }
     
+    // Reconsturct the path based on the table
     public void solvedPath(List<Item> items, List<Item> solution){
         HashSet<Item> path = new HashSet();
-        
         int weight = capacity;
         for(int i = this.items; i > 0; i--){
+            // If a value is less get(weight, i) > get(weight, i - 1)
+            // then we know the item is included so we can subtract its weight and move
+            // down the table of values
             if(get(weight, i) > get(weight, i - 1)){
                 Item cur = items.get(i - 1);
                 solution.add(cur);

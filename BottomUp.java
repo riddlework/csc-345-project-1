@@ -1,5 +1,7 @@
+/* This class implements the bottom-up dynamic programming approach to solve 
+the knapsack problem.
+*/ 
 import java.util.List;
-
 public class BottomUp{
     public static int solve(List<Item> items, List<Item> sol, int capacity){
         BottomUp solver = new BottomUp(items, capacity);
@@ -7,29 +9,10 @@ public class BottomUp{
         solver.table.solvedPath(items, sol);
         return solver.table.get(capacity, items.size());
     }
-    // A modified version of the other BottomUp approach
-    // uses a single dimensional array. The challange with this is that it dosen't
-    // tra
-    public static  int solveSpaceOptimized(List<Item> items, List<Item> sol, int capacity){
-        int[] solution = new int[capacity + 1];
-        for(int i = 0; i <= capacity; i++){
-            solution[i] = 0;
-        }
-        for(int i = 0; i < items.size(); i++){
-            Item cur = items.get(i);
-            for(int j = capacity; j >= cur.weight; j--)
-                solution[j] = max(solution[j], cur.value + solution[j - cur.weight]);
-        }
-        return solution[capacity];
-    }
     
-
-    // TODO use an Item array
     int capacity = 0;
     List<Item> items;
     ComputationTable table;
-    
-    
     
     BottomUp(List<Item> items, int c){
         this.items = items;
@@ -37,13 +20,12 @@ public class BottomUp{
         this.table = new ComputationTable(c, items.size(), 0);
     }
     
-
-    // Defining a class for this to avoid dumb bugs mixing up the index
-    
+    // Utility method to return the maximum of two integers.
     public static int max(int a, int b) {
         return (a > b) ? a : b;
     }
     
+    // This method fills the computation table with values to find the optimal solution.
     private void fillTable(int W, int n) {
         // Construct a table of values to 
         for(int idx = 1; idx <= n; idx++){

@@ -1,7 +1,4 @@
-/* Recursive solution to Knapsack with memoization to avoid repeated work.
-
-
-*/
+/* Recursive solution to Knapsack with memoization to avoid repeated work.*/
 import java.util.List;
 public class MemoizedRecursive  {
     public static int solve(List<Item> items, List<Item> solution,  int cap){
@@ -31,8 +28,8 @@ public class MemoizedRecursive  {
         // See if the value already exists in our table
         
         // If we do, just return the value (this is the memoization)
-        if (!table.isComputed(remainingWeight, idx - 1)){
-            knapSack(remainingWeight, idx - 1);
+        if (table.isComputed(remainingWeight, idx - 1)){
+            returnknapSack(remainingWeight, idx - 1);
         }
         // If not, we compute the solution to the current subproblem 
         // This is the same as the normal recursive solution
